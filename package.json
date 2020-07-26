@@ -24,10 +24,9 @@
     "url": "https://github.com/StevenMaMei/protractor-workshop-2020/issues"
   },
   "homepage": "https://github.com/StevenMaMei/protractor-workshop-2020#readme",
-  "dependencies": {
-    "protractor": "^7.0.0"
-  },
+
   "devDependencies": {
+    "protractor": "^7.0.0",
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "^14.0.25",
     "typescript": "^3.9.7"
