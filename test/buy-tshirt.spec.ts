@@ -17,13 +17,8 @@ describe('Buy a t-shirt', () => {
   const productAddedPage: ProductAddedPage = new ProductAddedPage();
   const productListPage: ProductListPage = new ProductListPage();
 
-  beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
-  });
-
   it('then should be bought a t-shirt', async () => {
     await browser.get('http://automationpractice.com/');
-    await(browser.sleep(5000));
 
     await menuContentPage.goToTShirtMenu();
     await(browser.sleep(3000));
@@ -55,6 +50,7 @@ describe('Buy a t-shirt', () => {
     await bankPaymentPage.confirmOrder();
     await(browser.sleep(3000));
 
-    orderSummaryPage.confirmIfTheOrderWasSuccesful();
+    await expect(orderSummaryPage.getConfirmationText())
+      .toBe('Your order on My Store is complete.');
   });
 });
