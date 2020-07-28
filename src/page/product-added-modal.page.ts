@@ -1,5 +1,4 @@
-import { $, ElementFinder, browser } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { $, ElementFinder, browser, ExpectedConditions } from 'protractor';
 
 export class ProductAddedPage {
   private addToCartBtn: ElementFinder;
@@ -11,7 +10,7 @@ export class ProductAddedPage {
 
   public async addProduct(): Promise<void> {
     await browser.wait(
-      protractor.ExpectedConditions.visibilityOf(this.addToCartBtn),
+      ExpectedConditions.visibilityOf(this.addToCartBtn),
       this.timeout);
     await this.addToCartBtn.click();
   }

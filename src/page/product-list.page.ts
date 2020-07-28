@@ -1,5 +1,4 @@
-import { $, ElementFinder, browser } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
+import { $, ElementFinder, browser, ExpectedConditions } from 'protractor';
 
 export class ProductListPage {
   private proceedCheckoutBtn: ElementFinder;
@@ -11,7 +10,7 @@ export class ProductListPage {
 
   public async proceedToCheckOut(): Promise<void> {
     await browser.wait(
-      protractor.ExpectedConditions.visibilityOf(this.proceedCheckoutBtn),
+      ExpectedConditions.visibilityOf(this.proceedCheckoutBtn),
       this.timeout);
     await this.proceedCheckoutBtn.click();
   }
