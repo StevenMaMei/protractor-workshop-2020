@@ -10,4 +10,8 @@ export class ProductListPage {
   public async proceedToCheckOut(): Promise<void> {
     await this.proceedCheckoutBtn.click();
   }
+
+  public getProceedCheckoutBtn(): ElementFinder {
+    return this.proceedCheckoutBtn;
+  }
 }
