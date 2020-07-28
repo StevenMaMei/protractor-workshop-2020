@@ -5,7 +5,9 @@ export class ProductListPage {
   private timeout: number = 5000;
 
   constructor () {
-    this.proceedCheckoutBtn = $('[style*="display: block;"] .button-container > a');
+    // this way we ensure that we are selecting the .button-container
+    // within the layer_cart (it is safer because it is an id)
+    this.proceedCheckoutBtn = $('#layer_cart .button-container > a');
   }
 
   public async proceedToCheckOut(): Promise<void> {

@@ -11,7 +11,8 @@ export class SignInPage {
   constructor (email: string, password: string) {
     this.emailBox = $('#email');
     this.passwordBox = $('#passwd');
-    this.submitBtn = $('#SubmitLogin > span');
+    // we can remove '> span'
+    this.submitBtn = $('#SubmitLogin');
     this.email = email;
     this.password = password;
   }
