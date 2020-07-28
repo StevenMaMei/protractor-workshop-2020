@@ -50,6 +50,7 @@ describe('Buy a t-shirt', () => {
     await bankPaymentPage.confirmOrder();
     await(browser.sleep(3000));
 
-    orderSummaryPage.confirmIfTheOrderWasSuccesful();
+    await expect(orderSummaryPage.getConfirmationText())
+    .toBe('Your order on My Store is complete.');
   });
 });
