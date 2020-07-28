@@ -9,6 +9,7 @@ export const config: Config = {
   onPrepare: () => {
     browser.ignoreSynchronization = true;
     reporter();
+    browser.manage().timeouts().implicitlyWait(3000);
   },
   capabilities: {
     browserName: 'chrome',
