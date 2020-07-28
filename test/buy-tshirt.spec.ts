@@ -1,13 +1,10 @@
 import { browser } from 'protractor';
 import { MenuContentPage, SignInPage, SummaryStepPage, AddresStepPage, ShippingStepPage,
   PaymentStepPage, BankPaymentPage, OrderSummaryPage, ProductAddedPage, ProductListPage } from '../src/page';
-import { protractor } from 'protractor/built/ptor';
 
 describe('Buy a t-shirt', () => {
   const email: string = 'aperdomobo@gmail.com';
   const password: string = 'WorkshopProtractor';
-
-  const timeout: number = 5000;
 
   const menuContentPage: MenuContentPage = new MenuContentPage();
   const summaryStepPage: SummaryStepPage = new SummaryStepPage();
@@ -25,14 +22,8 @@ describe('Buy a t-shirt', () => {
 
     await menuContentPage.goToTShirtMenu();
 
-    await browser.wait(
-      protractor.ExpectedConditions.visibilityOf(productAddedPage.getAddToCartBtn()),
-      timeout);
     await productAddedPage.addProduct();
 
-    await browser.wait(
-      protractor.ExpectedConditions.visibilityOf(productListPage.getProceedCheckoutBtn()),
-      timeout);
     await productListPage.proceedToCheckOut();
 
     await summaryStepPage.completeSummaryStep();
