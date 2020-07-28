@@ -1,0 +1,16 @@
+
+> workshop-protractor@1.0.0 test D:\Escritorio\Semestre_9\protractor-workshop-2020
+> npm run test:headless
+
+
+> workshop-protractor@1.0.0 test:headless D:\Escritorio\Semestre_9\protractor-workshop-2020
+> npm run build && protractor dist/protractor/headless.config.js
+
+
+> workshop-protractor@1.0.0 build D:\Escritorio\Semestre_9\protractor-workshop-2020
+> npm run lint && npm run clean && tsc
+
+
+> workshop-protractor@1.0.0 lint D:\Escritorio\Semestre_9\protractor-workshop-2020
+> tslint --project tsconfig.json protractor/**/*.ts test/**/*.ts src/**/*.ts
+
