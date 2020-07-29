@@ -1,18 +1,19 @@
 import { $, ElementFinder, browser, ExpectedConditions } from 'protractor';
 
 export class ProductAddedPage {
-  private addToCartBtn: ElementFinder;
+  private proceedCheckoutBtn: ElementFinder;
   private timeout: number = 5000;
 
   constructor () {
-    // in this way we can select another product in the list by modifying the nth-child
-    // also, a.button.ajax_add_to_cart_button is enough
-    this.addToCartBtn = $('#center_column ul li:nth-child(1) a.button.ajax_add_to_cart_button');
+    // this way we ensure that we are selecting the .button-container
+    // within the layer_cart (it is safer because it is an id)
+    this.proceedCheckoutBtn = $('#layer_cart .button-container > a');
   }
-  public async addProduct(): Promise<void> {
+
+  public async proceedToCheckOut(): Promise<void> {
     await browser.wait(
-      ExpectedConditions.visibilityOf(this.addToCartBtn),
+      ExpectedConditions.visibilityOf(this.proceedCheckoutBtn),
       this.timeout);
-    await this.addToCartBtn.click();
+    await this.proceedCheckoutBtn.click();
   }
 }
