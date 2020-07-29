@@ -1,10 +1,10 @@
-import { by, element, ElementFinder } from 'protractor';
+import { $, ElementFinder } from 'protractor';
 
 export class OrderSummaryPage {
   private confirmationText: ElementFinder;
 
   constructor () {
-    this.confirmationText = element(by.cssContainingText('strong', 'Your order on My Store is complete.'));
+    this.confirmationText = $('.cheque-indent');
   }
 
   public async getConfirmationText(): Promise<string> {
