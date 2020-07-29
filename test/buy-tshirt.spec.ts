@@ -22,9 +22,9 @@ describe('Buy a t-shirt', () => {
 
     await menuContentPage.goToTShirtMenu();
 
-    await productAddedPage.addProduct();
+    await productListPage.addProduct();
 
-    await productListPage.proceedToCheckOut();
+    await productAddedPage.proceedToCheckOut();
 
     await summaryStepPage.completeSummaryStep();
 
