@@ -5,7 +5,7 @@ export class SummaryStepPage {
 
   constructor () {
     // it is more meaningful if we use also an 'a'
-    this.proceedCheckoutBtn = $('.cart_navigation a span');
+    this.proceedCheckoutBtn = $('.cart_navigation span');
   }
 
   public async completeSummaryStep(): Promise<void> {
