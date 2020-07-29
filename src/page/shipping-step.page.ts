@@ -7,7 +7,7 @@ export class ShippingStepPage {
   constructor () {
     this.agreeTermsCheckBox = $('#cgv');
     // it could be clearer that we are searching the submit button
-    this.proceedCheckoutBtn = $('#form button');
+    this.proceedCheckoutBtn = $('[name="processCarrier"]');
   }
 
   public async agreeTermsShippingStep(): Promise<void> {

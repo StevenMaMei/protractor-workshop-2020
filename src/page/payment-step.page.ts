@@ -7,7 +7,7 @@ export class PaymentStepPage {
     // can be shortened. In this way it is clearer that we
     // are choosing the bankwire option, obviously it is
     // a class, but it is better than the original selector
-    this.payByBankBtn = $('#HOOK_PAYMENT .bankwire');
+    this.payByBankBtn = $('a[title="Pay by bank wire"]');
   }
 
   public async goToPayByBank(): Promise<void> {

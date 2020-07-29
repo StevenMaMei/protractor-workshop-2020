@@ -5,7 +5,7 @@ export class AddresStepPage {
 
   constructor () {
     // it could be clearer that we are searching the submit button
-    this.proceedToCheckoutBtn = $('#center_column form button');
+    this.proceedToCheckoutBtn = $('[name="processAddress"]');
   }
 
   public async completeAddresStepPage(): Promise<void> {

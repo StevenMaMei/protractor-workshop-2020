@@ -7,7 +7,7 @@ export class ProductAddedPage {
   constructor () {
     // this way we ensure that we are selecting the .button-container
     // within the layer_cart (it is safer because it is an id)
-    this.proceedCheckoutBtn = $('#layer_cart .button-container > a');
+    this.proceedCheckoutBtn = $('a[title="Proceed to checkout"]');
   }
 
   public async proceedToCheckOut(): Promise<void> {
