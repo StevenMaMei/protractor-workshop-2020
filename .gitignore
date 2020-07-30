@@ -152,4 +152,7 @@ $RECYCLE.BIN/
 # Typescript
 dist
 
+#Jasmine awesome report
+awesome-report
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node
