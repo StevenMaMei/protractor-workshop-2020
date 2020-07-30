@@ -1,18 +1,27 @@
-import { $, ElementFinder, browser, ExpectedConditions } from 'protractor';
+import { by, ElementFinder, browser, ExpectedConditions, element, ElementArrayFinder } from 'protractor';
 
 export class ProductListPage {
-  private addToCartBtn: ElementFinder;
+  private products: ElementArrayFinder;
   private timeout: number = 5000;
 
   constructor () {
-    // in this way we can select another product in the list by modifying the nth-child
-    // also, a.button.ajax_add_to_cart_button is enough
-    this.addToCartBtn = $('#center_column ul li:nth-child(1) a.button.ajax_add_to_cart_button');
+    this.products = element.all(by.css('.product-container'));
   }
-  public async addProduct(): Promise<void> {
+
+  public async selectProduct(productName: string): Promise<void> {
     await browser.wait(
-      ExpectedConditions.visibilityOf(this.addToCartBtn),
+      ExpectedConditions.visibilityOf(this.findByProduct(productName)),
       this.timeout);
-    await this.addToCartBtn.click();
+    await this.findByProduct(productName).$('a.ajax_add_to_cart_button').click();
+  }
+
+  private findByProduct(productName: string): ElementFinder {
+    return this.products.filter((elem, index) => {
+      index;
+      return elem.$('a.product-name')
+        .getAttribute('title').then((title: string) => {
+          return title === productName;
+        });
+    }).first();
   }
 }
