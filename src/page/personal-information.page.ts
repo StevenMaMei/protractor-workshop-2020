@@ -1,4 +1,4 @@
-import { $, by, ElementFinder, browser } from 'protractor';
+import { $, by, ElementFinder, ExpectedConditions, browser } from 'protractor';
 
 export class PersonalInformationPage {
   private firstNameBox: ElementFinder;
@@ -10,6 +10,7 @@ export class PersonalInformationPage {
   private continentSelect: ElementFinder;
   private commandsSelect: ElementFinder;
   private submitBtn: ElementFinder;
+  private timeout: number = 5000;
 
   constructor () {
     this.firstNameBox = $('input[name="firstname"]');
@@ -22,6 +23,9 @@ export class PersonalInformationPage {
   }
 
   public async fillForm(info: Object): Promise<void> {
+    await browser.wait(
+      ExpectedConditions.visibilityOf(this.firstNameBox),
+      this.timeout);
 
     await this.firstNameBox.sendKeys(info['firstName']);
 
