@@ -16,7 +16,7 @@ describe('The user enters to the website', () => {
 
       await menuContentPage.goToTShirtMenu();
 
-      await productListPage.addProduct();
+      await productListPage.selectProduct('Faded Short Sleeve T-shirts');
 
       await productAddedPage.proceedToCheckOut();
 
