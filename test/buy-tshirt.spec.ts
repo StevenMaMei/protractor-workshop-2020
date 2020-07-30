@@ -2,45 +2,60 @@ import { browser } from 'protractor';
 import { MenuContentPage, SignInPage, SummaryStepPage, AddresStepPage, ShippingStepPage,
   PaymentStepPage, BankPaymentPage, OrderSummaryPage, ProductAddedPage, ProductListPage } from '../src/page';
 
-describe('Buy a t-shirt', () => {
-  const email: string = 'aperdomobo@gmail.com';
-  const password: string = 'WorkshopProtractor';
+describe('The user enters to the website', () => {
 
-  const menuContentPage: MenuContentPage = new MenuContentPage();
-  const summaryStepPage: SummaryStepPage = new SummaryStepPage();
-  const signInPage: SignInPage = new SignInPage(email, password);
-  const addresStepPage: AddresStepPage = new AddresStepPage();
-  const shippingStepPage: ShippingStepPage = new ShippingStepPage();
-  const paymentStepPage: PaymentStepPage = new PaymentStepPage();
-  const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
-  const orderSummaryPage: OrderSummaryPage = new OrderSummaryPage();
-  const productAddedPage: ProductAddedPage = new ProductAddedPage();
-  const productListPage: ProductListPage = new ProductListPage();
-
-  it('then should be bought a t-shirt', async () => {
+  beforeAll(async() => {
     await browser.get('http://automationpractice.com/');
+  });
+  describe('he goes to the t-shirt menu and adds one t-shirt to the cart', () => {
+    beforeAll(async () => {
+      const menuContentPage: MenuContentPage = new MenuContentPage();
+      const summaryStepPage: SummaryStepPage = new SummaryStepPage();
+      const productAddedPage: ProductAddedPage = new ProductAddedPage();
+      const productListPage: ProductListPage = new ProductListPage();
 
-    await menuContentPage.goToTShirtMenu();
+      await menuContentPage.goToTShirtMenu();
 
-    await productListPage.addProduct();
+      await productListPage.addProduct();
 
-    await productAddedPage.proceedToCheckOut();
+      await productAddedPage.proceedToCheckOut();
 
-    await summaryStepPage.completeSummaryStep();
+      await summaryStepPage.completeSummaryStep();
+    });
+    describe('He logs into the system', () => {
+      beforeAll(async () => {
+        const email: string = 'aperdomobo@gmail.com';
+        const password: string = 'WorkshopProtractor';
+        const signInPage: SignInPage = new SignInPage(email, password);
 
-    await signInPage.completeSignInStep();
+        await signInPage.completeSignInStep();
+      });
+      describe('he selects the default address and accepts the shipping terms', () => {
+        beforeAll(async () => {
+          const addresStepPage: AddresStepPage = new AddresStepPage();
+          const shippingStepPage: ShippingStepPage = new ShippingStepPage();
 
-    await addresStepPage.completeAddresStepPage();
+          await addresStepPage.completeAddresStepPage();
 
-    await shippingStepPage.agreeTermsShippingStep();
+          await shippingStepPage.agreeTermsShippingStep();
 
-    await shippingStepPage.completeShippingStep();
+          await shippingStepPage.completeShippingStep();
+        });
+        describe('He proceeds to pay', () => {
+          beforeAll(async () => {
+            const paymentStepPage: PaymentStepPage = new PaymentStepPage();
+            const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
+            await paymentStepPage.goToPayByBank();
+            await bankPaymentPage.confirmOrder();
+          });
 
-    await paymentStepPage.goToPayByBank();
-
-    await bankPaymentPage.confirmOrder();
-
-    await expect(orderSummaryPage.getConfirmationText())
-      .toBe('Your order on My Store is complete.');
+          it('the purchase has been completed', async() => {
+            const orderSummaryPage: OrderSummaryPage = new OrderSummaryPage();
+            await expect(orderSummaryPage.getConfirmationText())
+              .toBe('Your order on My Store is complete.');
+          });
+        });
+      });
+    });
   });
 });
