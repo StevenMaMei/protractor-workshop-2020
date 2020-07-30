@@ -1,4 +1,4 @@
-import { browser, ExpectedConditions } from 'protractor';
+import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
 describe('Test of filling the form. Entering to the website', () => {
@@ -23,10 +23,10 @@ describe('Test of filling the form. Entering to the website', () => {
           'Wait Commands',
           'WebElement Commands']
       });
-      await personalInformationPage.finishForm();
     });
-    it('The submit button should has been pressed', async () => {
-      await expect(ExpectedConditions.alertIsPresent());
+    it('The submit button and the alert should have been pressed', async () => {
+      await personalInformationPage.finishForm();
+      await expect(personalInformationPage.getPageTitle()).toEqual('Selenium - Automation Practice Form');
     });
   });
 });

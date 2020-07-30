@@ -13,6 +13,7 @@ export const config: Config = {
   },
   capabilities: {
     browserName: 'chrome',
+    unexpectedAlertBehaviour: 'accept',
     chromeOptions: {
       args: ['--headless', '--disable-gpu']
     }

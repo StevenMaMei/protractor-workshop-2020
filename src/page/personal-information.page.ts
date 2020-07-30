@@ -10,16 +10,25 @@ export class PersonalInformationPage {
   private continentSelect: ElementFinder;
   private commandsSelect: ElementFinder;
   private submitBtn: ElementFinder;
-  private timeout: number = 5000;
+  private timeout: number = 8000;
+  private pageTitle: ElementFinder;
 
   constructor () {
     this.firstNameBox = $('input[name="firstname"]');
     this.lastNameBox = $('input[name="lastname"]');
     this.submitBtn = $('button[name="submit"]');
+    this.pageTitle = $('div.mui-container-fluid.content > div > div.mui-col-md-6.tutorial-content > h1:nth-child(1)');
   }
 
   public async finishForm() {
     await this.submitBtn.click();
+  }
+
+  public async getPageTitle(): Promise<string> {
+    await browser.wait(
+      ExpectedConditions.visibilityOf(this.pageTitle),
+      this.timeout);
+    return this.pageTitle.getText();
   }
 
   public async fillForm(info: Object): Promise<void> {
