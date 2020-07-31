@@ -28,7 +28,6 @@ describe('Test of filling the form. Entering to the website', () => {
     });
     it('The submit button and the alert should have been pressed', async () => {
       await personalInformationPage.finishForm();
-      await personalInformationPage.acceptAlert();
       await expect(personalInformationPage.getPageTitle()).toEqual('Selenium - Automation Practice Form');
     });
   });

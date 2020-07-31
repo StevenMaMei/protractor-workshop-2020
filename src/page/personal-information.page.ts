@@ -23,6 +23,8 @@ export class PersonalInformationPage {
 
   public async finishForm() {
     await this.submitBtn.click();
+    browser.wait(ExpectedConditions.alertIsPresent(), this.timeout);
+    await browser.switchTo().alert().accept();
   }
 
   public async getPageTitle(): Promise<string> {
@@ -30,11 +32,6 @@ export class PersonalInformationPage {
       ExpectedConditions.visibilityOf(this.pageTitle),
       this.timeout);
     return this.pageTitle.getText();
-  }
-
-  public async acceptAlert() {
-    browser.wait(ExpectedConditions.alertIsPresent(), this.timeout);
-    (await browser.switchTo().alert()).accept();
   }
 
   public async fillForm(info: PersonalInfo): Promise<void> {
