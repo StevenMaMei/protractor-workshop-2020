@@ -7,12 +7,13 @@ describe('Entering to the website', () => {
   });
   describe('Changing the iframe1 heigh', async () => {
     const iframePage: IFramePage = new IFramePage();
+    const newHeight: number = 50;
     beforeAll(async () => {
-      await iframePage.setFormFrameHeight(50);
+      await iframePage.setFormFrameHeight(newHeight);
     });
     it('the iframe1 height should has been modified', async () => {
-      await expect((await iframePage.getIframeHeight()).toString())
-        .toEqual('50');
+      await expect(await iframePage.getIframeHeight())
+        .toEqual(newHeight);
     });
   });
 });
