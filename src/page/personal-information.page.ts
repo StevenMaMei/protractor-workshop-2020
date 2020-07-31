@@ -39,14 +39,15 @@ export class PersonalInformationPage {
       ExpectedConditions.visibilityOf(this.firstNameBox),
       this.timeout);
 
-    await this.firstNameBox.sendKeys(info['firstName']);
+    await this.firstNameBox.sendKeys(info.firstName);
 
-    await this.lastNameBox.sendKeys(info['lastName']);
+    await this.lastNameBox.sendKeys(info.lastName);
 
-    this.sexCheckBox = $(`input[name="sex"][value=${info['sex']}]`);
+    this.sexCheckBox = $(`input[name="sex"][value=${info.sex}]`);
     await this.sexCheckBox.click();
 
-    this.yearsOfExperienceCheckBox = $(`input[name="exp"][type="radio"][value="${info['experience']}"]`);
+    this.yearsOfExperienceCheckBox = $(`input[name="exp"][type="radio"][value="${info
+                                                                                  .experience}"]`);
     await this.yearsOfExperienceCheckBox.click();
 
     info['profession'].forEach(async (element) => {
@@ -66,7 +67,7 @@ export class PersonalInformationPage {
     });
 
     this.continentSelect = $('select[name="continents"]')
-      .element(by.cssContainingText('option', info['continent']));
+      .element(by.cssContainingText('option', info.continent));
     await this.continentSelect.click();
   }
 }
