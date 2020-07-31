@@ -50,18 +50,18 @@ export class PersonalInformationPage {
                                                                                   .experience}"]`);
     await this.yearsOfExperienceCheckBox.click();
 
-    info['profession'].forEach(async (element) => {
+    info.profession.forEach(async (element) => {
       this.professionCheckBox = $(`input[name="profession"][value="${element}"]`);
       await this.professionCheckBox.click();
     });
 
-    info['commands'].forEach(async (element) => {
+    info.commands.forEach(async (element) => {
       this.commandsSelect = $('select[name="selenium_commands"]')
       .element(by.cssContainingText('option', element));
       await this.commandsSelect.click();
     });
 
-    info['tools'].forEach(async (element) => {
+    info.tools.forEach(async (element) => {
       this.toolSeleniumCheckBox = $(`input[name="tool"][value="${element}"]`);
       await this.toolSeleniumCheckBox.click();
     });
