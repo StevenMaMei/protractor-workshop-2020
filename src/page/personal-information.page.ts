@@ -1,4 +1,5 @@
 import { $, by, ElementFinder, ExpectedConditions, browser } from 'protractor';
+import { PersonalInfo } from '../personalInfo';
 
 export class PersonalInformationPage {
   private firstNameBox: ElementFinder;
@@ -31,7 +32,12 @@ export class PersonalInformationPage {
     return this.pageTitle.getText();
   }
 
-  public async fillForm(info: Object): Promise<void> {
+  public async acceptAlert() {
+    browser.wait(ExpectedConditions.alertIsPresent(), this.timeout);
+    (await browser.switchTo().alert()).accept();
+  }
+
+  public async fillForm(info: PersonalInfo): Promise<void> {
     await browser.wait(
       ExpectedConditions.visibilityOf(this.firstNameBox),
       this.timeout);
@@ -51,6 +57,12 @@ export class PersonalInformationPage {
       await this.professionCheckBox.click();
     });
 
+    info['commands'].forEach(async (element) => {
+      this.commandsSelect = $('select[name="selenium_commands"]')
+      .element(by.cssContainingText('option', element));
+      await this.commandsSelect.click();
+    });
+
     info['tools'].forEach(async (element) => {
       this.toolSeleniumCheckBox = $(`input[name="tool"][value="${element}"]`);
       await this.toolSeleniumCheckBox.click();
@@ -59,11 +71,5 @@ export class PersonalInformationPage {
     this.continentSelect = $('select[name="continents"]')
       .element(by.cssContainingText('option', info['continent']));
     await this.continentSelect.click();
-
-    info['commands'].forEach(async (element) => {
-      this.commandsSelect = $('select[name="selenium_commands"]')
-      .element(by.cssContainingText('option', element));
-      await this.commandsSelect.click();
-    });
   }
 }
