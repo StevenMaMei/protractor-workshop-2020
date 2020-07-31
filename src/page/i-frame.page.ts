@@ -8,7 +8,7 @@ export class IFramePage{
   }
   public async getIframeHeight(): Promise<number> {
     const height: string = await this.iframe1.getAttribute('height');
-    return await Number(height);
+    return Number(height);
   }
   public setFormFrameHeight(height: number): promise.Promise<void> {
     return browser.executeScript(`arguments[0].height = ${height};`, this.iframe1);
